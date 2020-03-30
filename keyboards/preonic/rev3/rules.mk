@@ -8,7 +8,8 @@ CONSOLE_ENABLE = yes         # Console for debug
 COMMAND_ENABLE = yes       # Commands for debug and configuration
 NKRO_ENABLE = yes           # Enable N-Key Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
-AUDIO_ENABLE = yes           # Audio output
+MIDI_ENABLE = no            # MIDI controls
+BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 RGBLIGHT_ENABLE = yes        # Enable WS2812 RGB underlight.
 
 # Do not enable RGB_MATRIX_ENABLE together with RGBLIGHT_ENABLE
@@ -19,4 +20,3 @@ DIP_SWITCH_ENABLE = no
 
 LAYOUTS = ortho_5x12
 
-WPM_ENABLE = yes
