@@ -15,4 +15,8 @@ RGBLIGHT_ENABLE = yes        # Enable WS2812 RGB underlight.
 RGB_MATRIX_ENABLE = no
 
 ENCODER_ENABLE = yes
-DIP_SWITCH_ENABLE = yes
+DIP_SWITCH_ENABLE = no
+
+LAYOUTS = ortho_5x12
+
+WPM_ENABLE = yes
