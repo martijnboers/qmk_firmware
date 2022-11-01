@@ -26,6 +26,7 @@
 #define E_FORWARD  S(A(KC_RIGHT))
 
 #define SWITCH    LALT(KC_ESC)
+#define TERMINAL  RGUI(KC_T)
 
 #define OSUP      LCTL(LALT(KC_UP))
 #define OSDOWN    LCTL(LALT(KC_DOWN))

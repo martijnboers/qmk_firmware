@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSLS, \
   POKER,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_ENT, \
   KC_LSPO,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_RSPC, \
-  KC_LCTL,  EXTR,    EXTR,    KC_LALT,          PROG,    KC_SPC,  KC_LGUI, C_THUMB, KC_PSCR, KC_LCTL
+  KC_LCTL,  EXTR,    EXTR,    KC_LALT,          PROG,    KC_SPC,           KC_LGUI, C_THUMB, KC_PSCR, KC_LCTL
 ),
 
 
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_PROGRAM] = LAYOUT_preonic_2x2u( \
   KC_F12,    KC_F1,   KC_F2,   KC_F3,              KC_F4,             KC_F5,    KC_F6,     KC_F7,    KC_F8,    KC_F9,   KC_F10,   KC_F11, \
-  SWITCH,    KC_GRV,  KC_DLR,  KC_TILD,            KC_ASTERISK,       _______,  _______,   _______,  KC_LBRC,  KC_RBRC, _______,  _______, \
+  SWITCH,    KC_GRV,  KC_DLR,  KC_TILD,            KC_ASTERISK,       TERMINAL, _______,   _______,  KC_LBRC,  KC_RBRC, _______,  _______, \
   _______,   KC_PLUS, KC_UNDS, KC_MINS,            KC_EQL,            OSDOWN,   OSUP,      KC_DQUO,  KC_LCBR,  KC_RCBR, KC_QUOT,  _______, \
   KC_LSFT,   _______, _______, KC_BRIGHTNESS_DOWN, KC_BRIGHTNESS_UP,  _______,  _______,   KC_WH_D,  KC_WH_U,  _______, _______,  _______, \
   _______,   _______, _______, _______,                               _______,  _______,             _______,  _______, _______,  _______
