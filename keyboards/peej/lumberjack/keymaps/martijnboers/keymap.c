@@ -36,7 +36,7 @@ void TAP(uint16_t keycode) {
 
 void CTRL(uint16_t keycode) {
   PRESS(KC_LCTL);
-    TAP(keycode);
+  TAP(keycode);
   RELEASE(KC_LCTL);
 }
 
@@ -94,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSLS, \
   POKER,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_ENT, \
   SC_LSPO,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, SC_RSPC, \
-  KC_LCTL,  EXTR,    EXTR,    KC_LALT, PROG,    PROG,    KC_SPC,  KC_SPC,  KC_LGUI, C_THUMB, KC_PSCR, KC_LCTL
+  KC_LCTL,  EXTR,    EXTR,    KC_LALT, PROG,    PROG,    KC_SPC,  KC_SPC,  KC_LGUI, C_THUMB,KC_PSCR, KC_LCTL
 ),
 
 
@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_MPRV,          KC_MPLY, KC_MNXT, KC_F5,    N_TAB,     KC_PAUSE,  T_PREV,    KC_UP,     T_NEXT,      KC_ENT,    W_QUIT, \
   _______, TD(LAYER_SWITCH), KC_VOLD, KC_VOLU, KC_MUTE,  _______,   KC_HOME,   KC_LEFT,   KC_DOWN,   KC_RGHT,     KC_BSPC,   KC_DEL, \
   _______, _______,          _______, COPY,    PASTE,    _______,   KC_END,    _______,   E_BACK,    E_FORWARD,   ALL,       C_HOME, \
-  _______, _______,          _______, _______, _______,   _______,   KC_SPC,    _______,    _______,   _______,     _______,   _______
+  _______, _______,          _______, _______, _______,  _______,   KC_SPC,    _______,    _______,   _______,    _______,   _______
 ),
 
 [_PROGRAM] = LAYOUT_ortho_5x12( \
