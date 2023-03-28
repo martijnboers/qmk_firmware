@@ -132,7 +132,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+void keyboard_pre_init_user() {
+    writePin(LED1, true);
+    writePin(LED2, true);
+}
+
+void keyboard_post_init_user() {
+    writePin(LED1, false);
+    writePin(LED2, false);
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  writePin(LED1, record->event.pressed);
+
   switch (keycode) {
     case HEADP:
       if (record->event.pressed) {
