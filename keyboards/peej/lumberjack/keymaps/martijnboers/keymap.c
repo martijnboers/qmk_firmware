@@ -142,6 +142,14 @@ void keyboard_post_init_user() {
     writePin(LED2, false);
 }
 
+bool led_update_kb(led_t led_state) {
+    bool res = led_update_user(led_state);
+    if(res) {
+        writePin(LED2, !led_state.caps_lock);
+    }
+    return res;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   writePin(LED1, record->event.pressed);
 
