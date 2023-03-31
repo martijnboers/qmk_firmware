@@ -102,11 +102,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 [_POKER] = LAYOUT_ortho_5x12( \
-  KC_CAPS, _______,          _______, _______, _______,  _______,   _______,   _______,   _______,   PUSH_2_TALK, _______,   KC_DEL, \
+  CW_TOGG, _______,          _______, _______, _______,  _______,   _______,   _______,   _______,   PUSH_2_TALK, _______,   KC_DEL, \
   _______, KC_MPRV,          KC_MPLY, KC_MNXT, KC_F5,    N_TAB,     KC_PAUSE,  T_PREV,    KC_UP,     T_NEXT,      KC_ENT,    W_QUIT, \
   _______, TD(LAYER_SWITCH), KC_VOLD, KC_VOLU, KC_MUTE,  _______,   KC_HOME,   KC_LEFT,   KC_DOWN,   KC_RGHT,     KC_BSPC,   KC_DEL, \
   _______, _______,          _______, COPY,    PASTE,    _______,   KC_END,    _______,   E_BACK,    E_FORWARD,   ALL,       C_HOME, \
-  _______, _______,          _______, _______, _______,  _______,   KC_SPC,    _______,    _______,   _______,    _______,   _______
+  _______, _______,          _______, _______, _______,  _______,   KC_SPC,    _______,    _______,  _______,     _______,   _______
 ),
 
 [_PROGRAM] = LAYOUT_ortho_5x12( \
@@ -145,12 +145,12 @@ void keyboard_post_init_user() {
     writePin(LED2, false);
 }
 
-bool led_update_kb(led_t led_state) {
-    bool res = led_update_user(led_state);
-    if(res) {
-        writePin(LED2, led_state.caps_lock);
+void caps_word_set_user(bool active) {
+    if (active) {
+        writePin(LED2, true);
+    } else {
+        writePin(LED2, false);
     }
-    return res;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
