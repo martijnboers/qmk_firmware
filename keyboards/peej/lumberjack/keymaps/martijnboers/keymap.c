@@ -1,5 +1,4 @@
-/* Copyright 2020 Paul James
- *
+/*
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
@@ -28,17 +27,6 @@
 
 #define PRESS(keycode) register_code16(keycode)
 #define RELEASE(keycode) unregister_code16(keycode)
-
-void TAP(uint16_t keycode) {
-    PRESS(keycode);
-    RELEASE(keycode);
-}
-
-void CTRL(uint16_t keycode) {
-  PRESS(KC_LCTL);
-  TAP(keycode);
-  RELEASE(KC_LCTL);
-}
 
 void dance_flsh_finished(tap_dance_state_t *state, void *user_data) {
   layer_on(_SELECT);
@@ -73,31 +61,35 @@ enum custom_keycodes {
   C_HOME,
 };
 
-const uint32_t unicode_map[] PROGMEM = {
-    [0]  = 0x1F44D,
+enum unicode_names {
+    THUMB,
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+    [THUMB]  = 0x1F44D, // 🐍
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
- * ,-----------------------------------------------------------------------------------.
- * | Esc  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Del  |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |Poker |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |enter |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |shift |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | ctrl |  os  | mod3  | alt  |  program   |    space    | os   | duim | print| ctrl |
- * `-----------------------------------------------------------------------------------'
+ * ,-------------------------------------------------------------------------------------.
+ * | esc   |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | bksp  |
+ * |-------+------+------+------+------+------+------+------+------+------+------+-------|
+ * | tab   |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | del   |
+ * |-------+------+------+------+------+-------------+------+------+------+------+-------|
+ * | poker |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  | enter |
+ * |-------+------+------+------+------+------|------+------+------+------+------+-------|
+ * | shift |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  | shift |
+ * |-------+------+------+------+------+------+------+------+------+------+------+-------|
+ * | ctrl  |  os  | mod3  | alt  |  program   |    space    | os   | duim | prnt | ctrl  |
+ * `-------------------------------------------------------------------------------------'
  */
 [_BASE] = LAYOUT_ortho_5x12( \
-  KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,       KC_0,    KC_BSPC, \
-  KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,       KC_P,    KC_BSLS, \
-  POKER,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,       KC_SCLN, KC_ENT, \
-  SC_LSPO,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,     KC_SLSH, SC_RSPC, \
-  KC_LCTL,  EXTR,    EXTR,    KC_LALT, PROG,    PROG,    KC_SPC,  KC_SPC,  KC_LGUI, X(0),       KC_PSCR, KC_LCTL
+  KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,      KC_0,    KC_BSPC, \
+  KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,      KC_P,    KC_BSLS, \
+  POKER,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,      KC_SCLN, KC_ENT, \
+  SC_LSPO,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,    KC_SLSH, SC_RSPC, \
+  KC_LCTL,  EXTR,    EXTR,    KC_LALT, PROG,    PROG,    KC_SPC,  KC_SPC,  KC_LGUI, UM(THUMB), KC_PSCR, KC_LCTL
 ),
 
 
@@ -126,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_EXTRA] = LAYOUT_ortho_5x12( \
-  _______,   QK_BOOT,        EE_CLR,       _______,          _______,   _______,   _______,   KC_MINS, KC_EQL,  _______, _______, _______, \
+  _______,   QK_BOOT,        EE_CLR,       QK_REBOOT,        _______,   _______,   _______,   KC_MINS, KC_EQL,  _______, _______, _______, \
   _______,   _______,        _______,      _______,          _______,   _______,   _______,   KC_7,    KC_8,    KC_9,    _______, _______, \
   _______,   _______,        _______,      _______,          _______,   _______,   HEADP,     KC_4,    KC_5,    KC_6,    KC_DEL,  _______, \
   _______,   _______,        _______,      _______,          _______,   _______,   _______,   KC_1,    KC_2,    KC_3,    _______, _______, \
