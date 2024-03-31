@@ -1,11 +1,12 @@
 #define TAPPING_TERM 200
 
-#define COPY      LCTL(KC_C)
-#define PASTE     LCTL(KC_V)
-#define T_PREV    LCTL(KC_PGUP)
-#define T_NEXT    LCTL(KC_PGDN)
-#define N_TAB     LCTL(KC_T)
-#define W_QUIT    LALT(KC_F4)
+#define COPY        LCTL(KC_C)
+#define PASTE       LCTL(KC_V)
+#define T_PREV      LCTL(KC_PGUP)
+#define T_NEXT      LCTL(KC_PGDN)
+#define N_TAB       LCTL(KC_T)
+#define W_QUIT      LALT(KC_F4)
+#define W_OVERVIEW  LCTL(KC_F10)
 
 #define ALL       LCTL(KC_A)
 
