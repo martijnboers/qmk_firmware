@@ -148,6 +148,10 @@ void caps_word_set_user(bool active) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   writePin(LED1, record->event.pressed);
 
+  if (is_caps_word_on() == false) {
+    writePin(LED2, get_current_wpm() > 90);
+  }
+
   switch (keycode) {
     case HEADP:
       if (record->event.pressed) {
