@@ -145,11 +145,28 @@ void caps_word_set_user(bool active) {
     }
 }
 
+#define IDLE_TIMEOUT_MS 800
+
+static uint32_t idle_callback(uint32_t trigger_time, void* cb_arg) {
+  // reset wpm counter
+  if (is_caps_word_on() == false) {
+    writePin(LED2, false);
+  }
+  return 0;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   writePin(LED1, record->event.pressed);
 
   if (is_caps_word_on() == false) {
     writePin(LED2, get_current_wpm() > 90);
+  }
+
+  // On every key event, start or extend the deferred execution to call
+  // `idle_callback()` after IDLE_TIMEOUT_MS. (resetting wpm counter)
+  static deferred_token idle_token = INVALID_DEFERRED_TOKEN;
+  if (!extend_deferred_exec(idle_token, IDLE_TIMEOUT_MS)) {
+    idle_token = defer_exec(IDLE_TIMEOUT_MS, idle_callback, NULL);
   }
 
   switch (keycode) {

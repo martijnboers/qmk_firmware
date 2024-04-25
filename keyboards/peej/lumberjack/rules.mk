@@ -3,6 +3,7 @@ EXTRAKEY_ENABLE = yes       # Audio control and System control
 
 WPM_ENABLE = yes
 WPM_SAMPLE_SECONDS = 15
+DEFERRED_EXEC_ENABLE = yes
 
 TAP_DANCE_ENABLE = yes
 UNICODEMAP_ENABLE = yes
