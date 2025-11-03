@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_SELECT] = LAYOUT_ortho_5x12( \
   _______,   _______,  _______,   _______, _______, _______, _______, _______, _______,  _______,  _______, _______, \
-  _______,   _______,  KC_W,      _______, _______, KC_T,    _______, _______, KC_UP,    _______,  _______, _______, \
+  _______,   _______,  KC_W,      _______, KC_R,    KC_T,    _______, _______, KC_UP,    _______,  _______, _______, \
   _______,   _______,  _______,   _______, KC_F,    _______, _______, KC_LEFT, KC_DOWN,  KC_RIGHT, KC_BSPC, KC_ENT, \
   _______,   _______,  _______,   KC_C,    KC_V,    _______, _______, _______, _______,  _______,  _______, _______, \
   _______,   _______,  _______,   _______, _______, _______, _______, _______, _______,  _______,  _______, _______
@@ -193,7 +193,7 @@ td_state_t cur_dance(tap_dance_state_t *state) {
 // Handle the possible states for each tapdance keycode you define:
 void tap_finished(tap_dance_state_t *state, void *user_data) {
     td_state = cur_dance(state);
-    layer_on(_BASE);
+    layer_on(_SELECT);
     switch (td_state) {
         case TD_SINGLE_TAP:
             register_code16(KC_LCTL);
@@ -211,7 +211,7 @@ void tap_finished(tap_dance_state_t *state, void *user_data) {
 }
 
 void tap_reset(tap_dance_state_t *state, void *user_data) {
-    layer_off(_BASE);
+    layer_off(_SELECT);
     switch (td_state) {
         case TD_SINGLE_TAP:
             unregister_code16(KC_LCTL);
@@ -232,4 +232,3 @@ void tap_reset(tap_dance_state_t *state, void *user_data) {
 tap_dance_action_t tap_dance_actions[] = {
     [TAP_SHFT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, tap_finished, tap_reset)
 };
-
