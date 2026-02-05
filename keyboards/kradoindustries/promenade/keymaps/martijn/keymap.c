@@ -176,7 +176,6 @@ void tap_reset(tap_dance_state_t *state, void *user_data) {
             break;
         case TD_SINGLE_HOLD:
             unregister_code16(KC_LCTL);
-            unregister_code16(KC_LSFT);
             break;
         case TD_DOUBLE_SINGLE_TAP:
             unregister_code16(KC_LCTL);
