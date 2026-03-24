@@ -46,15 +46,14 @@ void altlp_reset(tap_dance_state_t *state, void *user_data);
 // Tap Dance keycodes
 enum td_keycodes {
     TAP_SHFT,
-    TD_BRACKETS // <-- ADDED: A name for our new tap dance
+    TD_BRACKETS
 };
 
 enum custom_keycodes {
   HEADP = SAFE_RANGE,
   C_HOME,
+  NVIM_CFG,
 };
-
-// <-- REMOVED: The `enum unicode_names` and `unicode_map[]` are no longer needed.
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -108,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,   QK_BOOT,        EE_CLR,       QK_REBOOT,        _______,   _______,   _______,   KC_MINS, KC_EQL,  _______, _______, _______, \
   _______,   _______,        _______,      _______,          _______,   _______,   _______,   KC_7,    KC_8,    KC_9,    _______, _______, \
   _______,   _______,        _______,      _______,          _______,   _______,   HEADP,     KC_4,    KC_5,    KC_6,    KC_DEL,  _______, \
-  _______,   _______,        _______,      _______,          _______,   _______,   _______,   KC_1,    KC_2,    KC_3,    _______, _______, \
+  _______,   _______,        _______,      _______,          NVIM_CFG,  _______,   _______,   KC_1,    KC_2,    KC_3,    _______, _______, \
   _______,   _______,        _______,      _______,          _______,   _______,   _______,   _______, KC_0,    KC_0,    KC_0,    _______
 )
 
@@ -157,12 +156,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 
   switch (keycode) {
-    case HEADP:
-      if (record->event.pressed) {
-        SEND_STRING("TODO");
-      }
-      break;
-
+      case NVIM_CFG:
+        if (record->event.pressed) {
+          SEND_STRING(
+            "local o=vim.opt\n"
+            "o.number=true\n"
+            "o.relativenumber=true\n"
+            "o.ignorecase=true\n"
+            "o.smartcase=true\n"
+            "o.swapfile=false\n"
+            "o.undofile=true\n"
+            "o.wildoptions=\"pum\"\n"
+            "o.wildmode=\"longest:full,full\"\n"
+            "o.completeopt=\"menu,menuone,noinsert\"\n"
+            "o.complete=\".\"\n"
+            "o.infercase=true\n"
+            "o.pumheight=15\n"
+            "o.pumwidth=30\n"
+            "o.foldenable=true\n"
+            "o.foldlevel=20\n"
+            "o.foldmethod=\"indent\"\n"
+            "o.sessionoptions=\"blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,globals\"\n"
+            "local m=vim.keymap.set\n"
+            "m('t','<Esc>',[[<C-\\><C-n>]],{silent=true})\n"
+            "m('t','<S-Esc>','<Esc>',{silent=true})\n"
+            "m('n','-',function()if vim.fn.winnr(\"$\")==1 then return end;if vim.api.nvim_win_get_width(0)>=vim.o.columns-2 then vim.cmd(\"resize -3\")else vim.cmd(\"vertical resize -3\")end end)\n"
+            "m('n','+',function()if vim.fn.winnr(\"$\")==1 then return end;if vim.api.nvim_win_get_width(0)>=vim.o.columns-2 then vim.cmd(\"resize +3\")else vim.cmd(\"vertical resize +3\")end end)\n"
+          );
+        }
+        break;
     case C_HOME:
       if (record->event.pressed) {
         SEND_STRING("~/");
